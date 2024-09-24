@@ -16,8 +16,9 @@ public class Controller {
     private ChallengeService challservice;
 
 
-    public Controller(){
+    public Controller(ChallengeService cs){
 
+        this.challservice = cs;
 
     }
 

@@ -1,11 +1,14 @@
 package com.jahcode.SpringChallengeApp;
 
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// tell spring boot to manage this class as a service
+@Service
 public class ChallengeService {
 
     private List<Challenge> challenges = new ArrayList<>();
