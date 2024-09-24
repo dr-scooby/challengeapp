@@ -12,15 +12,13 @@ import java.util.List;
 @RestController
 public class Controller {
 
-    private List<Challenge> challenges = new ArrayList<>();
+
+    private ChallengeService challservice;
 
 
     public Controller(){
-        // testing, hard code the data
-        Challenge ch1 = new Challenge(1L, "Jan", "Learn new programming language");
-        Challenge ch2 = new Challenge(2L, "Jan", "Learn Docker");
-        challenges.add(ch1);
-        challenges.add(ch2);
+
+
     }
 
 
@@ -28,15 +26,19 @@ public class Controller {
     @GetMapping("/challenges")
     public List<Challenge> getAllChallenges(){
         // returned as JSON
-        return challenges;
+
+        return challservice.getAllChallenges();
     }
 
     // end point: http://localhost:8080/addchallenge
     @PostMapping("/addchallenge")
     public String addChallenge(@RequestBody Challenge c){
         // RequestBody is wrapped into the Challenge
-        challenges.add(c);
-
-        return "Challenge added successfully";
+       // challenges.add(c);
+        boolean isAdded = challservice.addChallenge(c);
+        if(isAdded)
+            return "Challenge added successfully";
+        else
+            return "Not added";
     }
 }
