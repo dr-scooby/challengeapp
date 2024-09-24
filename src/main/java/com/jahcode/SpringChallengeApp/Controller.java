@@ -14,6 +14,7 @@ public class Controller {
 
 
     public Controller(){
+        // testing, hard code the data
         Challenge ch1 = new Challenge(1L, "Jan", "Learn new programming language");
         Challenge ch2 = new Challenge(2L, "Jan", "Learn Docker");
         challenges.add(ch1);
