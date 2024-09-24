@@ -13,6 +13,12 @@ public class Controller {
     private List<Challenge> challenges = new ArrayList<>();
 
 
+    public Controller(){
+        Challenge ch1 = new Challenge(1L, "Jan", "Learn new programming language");
+        Challenge ch2 = new Challenge(2L, "Jan", "Learn Docker");
+        challenges.add(ch1);
+        challenges.add(ch2);
+    }
 
 
     @GetMapping("/challenges")
