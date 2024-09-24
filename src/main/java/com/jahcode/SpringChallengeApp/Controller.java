@@ -22,8 +22,16 @@ public class Controller {
     }
 
 
+    // end point: http://localhost:8080/challenges
     @GetMapping("/challenges")
     public List<Challenge> getAllChallenges(){
+        // returned as JSON
         return challenges;
+    }
+
+    // end point: http://localhost:8080/addchallenge
+    @GetMapping("/addchallenge")
+    public void addChallenge(){
+
     }
 }
