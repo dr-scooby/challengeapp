@@ -53,4 +53,10 @@ public class Controller {
     public List<Challenge> getByMonth(@PathVariable String month){
         return challservice.getChallengesbyMonth(month);
     }
+
+
+    @GetMapping("/getdescription/{description}")
+    public List<Challenge> getDescription(@PathVariable String description){
+        return challservice.getChallengesDescription(description);
+    }
 }

@@ -60,4 +60,15 @@ public class ChallengeService {
         }
         return tempchas;
     }
+
+
+    public List<Challenge> getChallengesDescription(String desc){
+        List<Challenge> tempchas = new ArrayList<>();
+        for(Challenge cha : challenges){
+            if(cha.getDescription().toLowerCase().equals(desc.toLowerCase()) || cha.getDescription().toLowerCase().contains(desc.toLowerCase())){
+                tempchas.add(cha);
+            }
+        }
+        return tempchas;
+    }
 }
