@@ -43,7 +43,8 @@ public class ChallengeService {
 
     public Challenge getAChallenge(Long id) {
         for(Challenge chal : challenges){
-            if(chal.getId().equals(id)){
+            if(chal.getId() == id){
+                System.out.println("found the id " + chal.getId() + " " +    chal.getMonth());
                 return chal;
             }
         }
