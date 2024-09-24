@@ -50,4 +50,14 @@ public class ChallengeService {
         }
         return null;
     }
+
+    public List<Challenge> getChallengesbyMonth(String month) {
+        List<Challenge> tempchas = new ArrayList<>();
+        for(Challenge cha : challenges){
+            if(cha.getMonth().toLowerCase().equals(month.toLowerCase()) || cha.getMonth().toLowerCase().contains(month.toLowerCase())){
+                tempchas.add(cha);
+            }
+        }
+        return tempchas;
+    }
 }

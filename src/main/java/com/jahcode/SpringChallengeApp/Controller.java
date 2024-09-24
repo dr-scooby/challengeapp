@@ -47,4 +47,10 @@ public class Controller {
         return challservice.getAChallenge(id);
 
     }
+
+
+    @GetMapping("/getmonth/{month}")
+    public List<Challenge> getByMonth(@PathVariable String month){
+        return challservice.getChallengesbyMonth(month);
+    }
 }
