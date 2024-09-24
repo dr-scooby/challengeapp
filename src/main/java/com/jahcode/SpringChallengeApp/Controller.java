@@ -1,6 +1,8 @@
 package com.jahcode.SpringChallengeApp;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -30,8 +32,11 @@ public class Controller {
     }
 
     // end point: http://localhost:8080/addchallenge
-    @GetMapping("/addchallenge")
-    public void addChallenge(){
+    @PostMapping("/addchallenge")
+    public String addChallenge(@RequestBody Challenge c){
+        // RequestBody is wrapped into the Challenge
+        challenges.add(c);
 
+        return "Challenge added successfully";
     }
 }
