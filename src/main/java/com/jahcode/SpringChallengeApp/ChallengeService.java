@@ -40,4 +40,13 @@ public class ChallengeService {
             return false;
 
     }
+
+    public Challenge getAChallenge(Long id) {
+        for(Challenge chal : challenges){
+            if(chal.getId().equals(id)){
+                return chal;
+            }
+        }
+        return null;
+    }
 }
