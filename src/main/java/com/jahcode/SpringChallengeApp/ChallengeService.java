@@ -13,13 +13,14 @@ public class ChallengeService {
 
     private List<Challenge> challenges = new ArrayList<>();
 
+    private Long nextId = 1L;
 
     public ChallengeService(){
         // testing, hard code the data
-        Challenge ch1 = new Challenge(1L, "Jan", "Learn new programming language");
-        Challenge ch2 = new Challenge(2L, "Jan", "Learn Docker");
-        challenges.add(ch1);
-        challenges.add(ch2);
+//        Challenge ch1 = new Challenge(1L, "Jan", "Learn new programming language");
+//        Challenge ch2 = new Challenge(2L, "Jan", "Learn Docker");
+//        challenges.add(ch1);
+//        challenges.add(ch2);
     }
 
 
@@ -32,6 +33,7 @@ public class ChallengeService {
     public boolean addChallenge( Challenge c){
 
         if(c != null) {
+            c.setId(nextId++);
             challenges.add(c);
             return true;
         }else
