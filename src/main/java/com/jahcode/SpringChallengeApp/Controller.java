@@ -1,5 +1,7 @@
 package com.jahcode.SpringChallengeApp;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -40,23 +42,43 @@ public class Controller {
             return "Not added";
     }
 
+    // ResponseEntity returns the HTTP response code
     @GetMapping("/getchallenge/{id}")
-    public Challenge getAChallenge(@PathVariable Long id){
+    public ResponseEntity<Challenge> getAChallenge(@PathVariable Long id){
         System.out.println("finding id " + id);
 
-        return challservice.getAChallenge(id);
+        Challenge chal = challservice.getAChallenge(id);
+        if(chal != null){
+            return new ResponseEntity<>(chal, HttpStatus.OK) ;
+        }else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
 
     }
+
 
 
     @GetMapping("/getmonth/{month}")
-    public List<Challenge> getByMonth(@PathVariable String month){
-        return challservice.getChallengesbyMonth(month);
+    public ResponseEntity<List<Challenge>> getByMonth(@PathVariable String month){
+        List<Challenge> thelist = challservice.getChallengesbyMonth(month);
+        if(thelist.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(thelist, HttpStatus.OK);
+        }
+
     }
 
 
+    // description and String variable name has to be same
     @GetMapping("/getdescription/{description}")
-    public List<Challenge> getDescription(@PathVariable String description){
-        return challservice.getChallengesDescription(description);
+    public ResponseEntity<List<Challenge>> getDescription(@PathVariable String description){
+        List<Challenge> thelist = challservice.getChallengesDescription(description);
+        if(thelist.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(thelist, HttpStatus.OK);
+        }
+
     }
 }
