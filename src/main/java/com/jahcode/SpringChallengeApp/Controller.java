@@ -32,14 +32,14 @@ public class Controller {
 
     // end point: http://localhost:8080/addchallenge
     @PostMapping("/addchallenge")
-    public String addChallenge(@RequestBody Challenge c){
+    public ResponseEntity<String> addChallenge(@RequestBody Challenge c){
         // RequestBody is wrapped into the Challenge
 
         boolean isAdded = challservice.addChallenge(c);
         if(isAdded)
-            return "Challenge added successfully";
+            return new ResponseEntity<>("Challenge added successfully", HttpStatus.I_AM_A_TEAPOT);
         else
-            return "Not added";
+            return new ResponseEntity<>("Not added", HttpStatus.I_AM_A_TEAPOT);
     }
 
     // ResponseEntity returns the HTTP response code
