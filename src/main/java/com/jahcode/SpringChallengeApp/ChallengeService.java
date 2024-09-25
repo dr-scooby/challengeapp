@@ -83,4 +83,16 @@ public class ChallengeService {
 
         return false;
     }
+
+    public boolean delete(Long id) {
+        //boolean ok = false;
+        for(Challenge cha : challenges) {
+            if(cha.getId() == id){
+                challenges.remove(cha);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

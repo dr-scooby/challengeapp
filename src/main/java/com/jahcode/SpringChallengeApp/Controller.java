@@ -97,4 +97,16 @@ public class Controller {
         }
     }
 
+
+    // delete by id
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<String> deleteChallenge(@PathVariable Long id){
+
+        boolean isdeleted = challservice.delete(id);
+        if(isdeleted)
+            return new ResponseEntity<>("Deleted " + id, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Unable to delete " + id, HttpStatus.NOT_FOUND);
+    }
+
 }
