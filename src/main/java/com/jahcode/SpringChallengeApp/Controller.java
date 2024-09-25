@@ -98,7 +98,9 @@ public class Controller {
 
 
     // delete by id
-    @GetMapping("/delete/{id}")
+    // end point: localhost:8080/delete/id#
+    // in postman use the delete
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteChallenge(@PathVariable Long id){
 
         boolean isdeleted = challengeService.delete(id);
