@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // Controller class in Spring
@@ -12,12 +11,12 @@ import java.util.List;
 public class Controller {
 
 
-    private ChallengeService challservice;
+    private ChallengeService challengeService;
 
 
     public Controller(ChallengeService cs){
 
-        this.challservice = cs;
+        this.challengeService = cs;
 
     }
 
@@ -27,7 +26,7 @@ public class Controller {
     public List<Challenge> getAllChallenges(){
         // returned as JSON
 
-        return challservice.getAllChallenges();
+        return challengeService.getAllChallenges();
     }
 
     // end point: http://localhost:8080/addchallenge
@@ -35,7 +34,7 @@ public class Controller {
     public ResponseEntity<String> addChallenge(@RequestBody Challenge c){
         // RequestBody is wrapped into the Challenge
 
-        boolean isAdded = challservice.addChallenge(c);
+        boolean isAdded = challengeService.addChallenge(c);
         if(isAdded)
             return new ResponseEntity<>("Challenge added successfully", HttpStatus.I_AM_A_TEAPOT); // i am a teapot, testing only, change
         else
@@ -47,7 +46,7 @@ public class Controller {
     public ResponseEntity<Challenge> getAChallenge(@PathVariable Long id){
         System.out.println("finding id " + id);
 
-        Challenge chal = challservice.getAChallenge(id);
+        Challenge chal = challengeService.getAChallenge(id);
         if(chal != null){
             return new ResponseEntity<>(chal, HttpStatus.OK) ;
         }else
@@ -60,7 +59,7 @@ public class Controller {
 
     @GetMapping("/getmonth/{month}")
     public ResponseEntity<List<Challenge>> getByMonth(@PathVariable String month){
-        List<Challenge> thelist = challservice.getChallengesbyMonth(month);
+        List<Challenge> thelist = challengeService.getChallengesbyMonth(month);
         if(thelist.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
@@ -73,7 +72,7 @@ public class Controller {
     // description and String variable name has to be same
     @GetMapping("/getdescription/{description}")
     public ResponseEntity<List<Challenge>> getDescription(@PathVariable String description){
-        List<Challenge> thelist = challservice.getChallengesDescription(description);
+        List<Challenge> thelist = challengeService.getChallengesDescription(description);
         if(thelist.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
@@ -88,7 +87,7 @@ public class Controller {
     // @RequestBody = is the JSON body from the client
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateChallenge(@PathVariable Long id, @RequestBody Challenge upchall){
-        boolean isupdated = challservice.updateChallenge(id, upchall);
+        boolean isupdated = challengeService.updateChallenge(id, upchall);
 
         if(isupdated){
             return new ResponseEntity<>("Updated challenge success", HttpStatus.OK);
@@ -102,7 +101,7 @@ public class Controller {
     @GetMapping("/delete/{id}")
     public ResponseEntity<String> deleteChallenge(@PathVariable Long id){
 
-        boolean isdeleted = challservice.delete(id);
+        boolean isdeleted = challengeService.delete(id);
         if(isdeleted)
             return new ResponseEntity<>("Deleted " + id, HttpStatus.OK);
         else
