@@ -86,6 +86,9 @@ public class ChallengeService {
 
     public boolean delete(Long id) {
         //boolean ok = false;
+        /*
+         lambda expression same: return challenges.removeIf(challenge -> challenge.getId().equals(id);
+         */
         for(Challenge cha : challenges) {
             if(cha.getId() == id){
                 challenges.remove(cha);
