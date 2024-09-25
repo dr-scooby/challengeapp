@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 // Controller class in Spring
+// end point mapping: http://localhost:8080/ChallengeApp/
 @RestController
+@RequestMapping("/ChallengeApp")
 public class Controller {
 
 
@@ -21,7 +23,7 @@ public class Controller {
     }
 
 
-    // end point: http://localhost:8080/challenges
+    // end point: http://localhost:8080/ChallengeApp/challenges
     @GetMapping("/challenges")
     public List<Challenge> getAllChallenges(){
         // returned as JSON
