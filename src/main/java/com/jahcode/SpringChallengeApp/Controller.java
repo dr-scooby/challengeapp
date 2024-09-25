@@ -37,7 +37,7 @@ public class Controller {
 
         boolean isAdded = challservice.addChallenge(c);
         if(isAdded)
-            return new ResponseEntity<>("Challenge added successfully", HttpStatus.I_AM_A_TEAPOT);
+            return new ResponseEntity<>("Challenge added successfully", HttpStatus.I_AM_A_TEAPOT); // i am a teapot, testing only, change
         else
             return new ResponseEntity<>("Not added", HttpStatus.I_AM_A_TEAPOT);
     }
@@ -81,4 +81,20 @@ public class Controller {
         }
 
     }
+
+
+    // update info
+    // @PathVariable = is from the id in "/update/{id}"
+    // @RequestBody = is the JSON body from the client
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateChallenge(@PathVariable Long id, @RequestBody Challenge upchall){
+        boolean isupdated = challservice.updateChallenge(id, upchall);
+
+        if(isupdated){
+            return new ResponseEntity<>("Updated challenge success", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Failed to updated", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

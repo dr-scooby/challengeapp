@@ -71,4 +71,16 @@ public class ChallengeService {
         }
         return tempchas;
     }
+
+    public boolean updateChallenge(Long id, Challenge updatechallenge) {
+        for(Challenge cha : challenges){
+            if(cha.getId() == id){
+                cha.setMonth(updatechallenge.getMonth());
+                cha.setDescription(updatechallenge.getDescription());
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
