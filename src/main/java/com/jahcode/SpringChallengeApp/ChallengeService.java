@@ -45,7 +45,7 @@ public class ChallengeService {
         if(c != null) {
             c.setId(nextId++);
             challenges.add(c);
-            challrepo.save(c);
+            challrepo.save(c); // add to the DB
             return true;
         }else
             return false;
