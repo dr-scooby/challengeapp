@@ -1,15 +1,14 @@
 package com.jahcode.SpringChallengeApp;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 // Entity part of the JPA, instances of this class mapped to the table in the DB.
 @Entity
 public class Challenge {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column (name = "challengemonth")
     private String month;
