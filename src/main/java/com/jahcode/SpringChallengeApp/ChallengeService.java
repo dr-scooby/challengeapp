@@ -1,6 +1,7 @@
 package com.jahcode.SpringChallengeApp;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -11,9 +12,16 @@ import java.util.List;
 @Service
 public class ChallengeService {
 
+    // the temp hard coded ArrayList
     private List<Challenge> challenges = new ArrayList<>();
 
     private Long nextId = 1L;
+
+    // use Autowired otherwise will get null error
+    @Autowired
+    private ChallengeRepository challrepo;
+
+
 
     public ChallengeService(){
         // testing, hard code the data
@@ -21,6 +29,8 @@ public class ChallengeService {
 //        Challenge ch2 = new Challenge(2L, "Jan", "Learn Docker");
 //        challenges.add(ch1);
 //        challenges.add(ch2);
+
+
     }
 
 
@@ -35,6 +45,7 @@ public class ChallengeService {
         if(c != null) {
             c.setId(nextId++);
             challenges.add(c);
+            challrepo.save(c);
             return true;
         }else
             return false;
