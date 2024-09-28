@@ -16,7 +16,7 @@ public class Challenge {
     private String description;
 
 
-    // default
+    // Jpa needs the default constructor
     public Challenge() {
         id = Long.valueOf(0);
         month = "";
