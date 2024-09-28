@@ -50,6 +50,13 @@ public class ChallengeService {
      */
     public boolean addChallenge( Challenge c){
 
+        /*
+        in postman using json, don't add the id as the field, enter like this:
+        {
+         "month": "dec",
+         "description": "learn spring"
+        }
+         */
         if(c != null) {
             c.setId(nextId++);
             challenges.add(c);
