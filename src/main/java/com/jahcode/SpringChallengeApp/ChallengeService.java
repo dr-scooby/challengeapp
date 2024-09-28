@@ -69,13 +69,16 @@ public class ChallengeService {
     }
 
     public Challenge getAChallenge(Long id) {
-        for(Challenge chal : challenges){
-            if(chal.getId() == id){
-                System.out.println("found the id " + chal.getId() + " " +    chal.getMonth());
-                return chal;
-            }
-        }
-        return null;
+        Optional<Challenge> challenge = challrepo.findById(id);
+        return challenge.orElse(null);
+
+//        for(Challenge chal : challenges){
+//            if(chal.getId() == id){
+//                System.out.println("found the id " + chal.getId() + " " +    chal.getMonth());
+//                return chal;
+//            }
+//        }
+//        return null;
     }
 
     // get challenge by Month
