@@ -70,6 +70,21 @@ public class Controller {
 
     }
 
+    @GetMapping("/getamonth/{month}")
+    public ResponseEntity<Challenge> getAMonth(@PathVariable String month){
+        Challenge thechallenge = challengeService.getAChallengeByMonth(month);
+        if(thechallenge != null)
+            return new ResponseEntity<>(thechallenge, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        if(thelist.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }else{
+//            return new ResponseEntity<>(thelist, HttpStatus.OK);
+//        }
+
+    }
+
 
     // description and String variable name has to be same
     @GetMapping("/getdescription/{description}")

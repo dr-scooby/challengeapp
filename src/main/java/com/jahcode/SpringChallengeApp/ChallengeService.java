@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // tell spring boot to manage this class as a service
 @Service
@@ -58,8 +59,8 @@ public class ChallengeService {
         }
          */
         if(c != null) {
-            c.setId(nextId++);
-            challenges.add(c);
+            //c.setId(nextId++);
+            //challenges.add(c);
             challrepo.save(c); // add to the DB
             return true;
         }else
@@ -75,6 +76,13 @@ public class ChallengeService {
             }
         }
         return null;
+    }
+
+    // get challenge by Month
+    public Challenge getAChallengeByMonth(String month){
+        Optional<Challenge> challenge = challrepo.findByMonthIgnoreCase(month);
+
+        return challenge.orElse(null);
     }
 
     public List<Challenge> getChallengesbyMonth(String month) {
@@ -99,13 +107,25 @@ public class ChallengeService {
     }
 
     public boolean updateChallenge(Long id, Challenge updatechallenge) {
-        for(Challenge cha : challenges){
-            if(cha.getId() == id){
-                cha.setMonth(updatechallenge.getMonth());
-                cha.setDescription(updatechallenge.getDescription());
-                return true;
-            }
+        Optional<Challenge> challenge = challrepo.findById(id);
+
+        if(challenge.isPresent()){
+            Challenge challengetoupdate = challenge.get();
+            challengetoupdate.setMonth(updatechallenge.getMonth());
+            challengetoupdate.setDescription(updatechallenge.getDescription());
+            challrepo.save(challengetoupdate);
+            return true;
         }
+
+
+
+//        for(Challenge cha : challenges){
+//            if(cha.getId() == id){
+//                cha.setMonth(updatechallenge.getMonth());
+//                cha.setDescription(updatechallenge.getDescription());
+//                return true;
+//            }
+//        }
 
         return false;
     }
@@ -115,11 +135,19 @@ public class ChallengeService {
         /*
          lambda expression same: return challenges.removeIf(challenge -> challenge.getId().equals(id);
          */
-        for(Challenge cha : challenges) {
-            if(cha.getId() == id){
-                challenges.remove(cha);
-                return true;
-            }
+//        for(Challenge cha : challenges) {
+//            if(cha.getId() == id){
+//                challenges.remove(cha);
+//                return true;
+//            }
+//        }
+
+        //return false;
+
+        Optional<Challenge> challenge = challrepo.findById(id);
+        if(challenge.isPresent()){
+            challrepo.deleteById(id);
+            return true;
         }
 
         return false;
