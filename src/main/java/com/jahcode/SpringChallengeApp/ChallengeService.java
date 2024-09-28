@@ -37,10 +37,17 @@ public class ChallengeService {
 
     // get all Challenges from the DB
     public List<Challenge> getAllChallenges(){
-        return challenges;
+
+        //return challenges;
+        return challrepo.findAll(); // use the Jpa and return all from the DB
     }
 
 
+    /**
+     *
+     * @param c Challenge
+     * @return boolean True if added success to the DB, return false if not added to the DB
+     */
     public boolean addChallenge( Challenge c){
 
         if(c != null) {
