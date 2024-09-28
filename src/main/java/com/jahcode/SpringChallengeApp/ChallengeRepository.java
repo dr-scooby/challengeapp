@@ -17,6 +17,7 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 
     List<Challenge> findByMonth(String month);
 
+    // custom query to use the like:
     @Query("SELECT c FROM Challenge c WHERE c.description LIKE %:description%")
     List<Challenge> findByDescriptionIgnoreCase(@Param("description") String description);
 }
