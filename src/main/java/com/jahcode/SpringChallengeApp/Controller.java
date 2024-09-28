@@ -31,7 +31,7 @@ public class Controller {
         return challengeService.getAllChallenges();
     }
 
-    // end point: http://localhost:8080/addchallenge
+    // end point: http://localhost:8080/ChallengeApp/addchallenge
     @PostMapping("/addchallenge")
     public ResponseEntity<String> addChallenge(@RequestBody Challenge c){
         // RequestBody is wrapped into the Challenge
@@ -100,7 +100,7 @@ public class Controller {
 
 
     // delete by id
-    // end point: localhost:8080/delete/id#
+    // end point: localhost:8080/ChallengeApp/delete/id#
     // in postman use the delete
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteChallenge(@PathVariable Long id){
