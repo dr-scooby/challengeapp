@@ -3,7 +3,6 @@ package com.jahcode.SpringChallengeApp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class ChallengeService {
 
     // use Autowired otherwise will get null error
     @Autowired
-    private ChallengeRepository challrepo;
+    private ChallengeRepository challangerepo;
 
 
 
@@ -40,7 +39,7 @@ public class ChallengeService {
     public List<Challenge> getAllChallenges(){
 
         //return challenges;
-        return challrepo.findAll(); // use the Jpa and return all from the DB
+        return challangerepo.findAll(); // use the Jpa and return all from the DB
     }
 
 
@@ -61,7 +60,7 @@ public class ChallengeService {
         if(c != null) {
             //c.setId(nextId++);
             //challenges.add(c);
-            challrepo.save(c); // add to the DB
+            challangerepo.save(c); // add to the DB
             return true;
         }else
             return false;
@@ -69,7 +68,7 @@ public class ChallengeService {
     }
 
     public Challenge getAChallenge(Long id) {
-        Optional<Challenge> challenge = challrepo.findById(id);
+        Optional<Challenge> challenge = challangerepo.findById(id);
         return challenge.orElse(null);
 
 //        for(Challenge chal : challenges){
@@ -83,13 +82,13 @@ public class ChallengeService {
 
     // get challenge by Month
     public Challenge getAChallengeByMonth(String month){
-        Optional<Challenge> challenge = challrepo.findByMonthIgnoreCase(month);
+        Optional<Challenge> challenge = challangerepo.findByMonthIgnoreCase(month);
 
         return challenge.orElse(null);
     }
 
     public List<Challenge> getChallengesbyMonth(String month) {
-        return challrepo.findByMonth(month);
+        return challangerepo.findByMonth(month);
 //        List<Challenge> tempchas = new ArrayList<>();
 //        for(Challenge cha : challenges){
 //            if(cha.getMonth().toLowerCase().equals(month.toLowerCase()) || cha.getMonth().toLowerCase().contains(month.toLowerCase())){
@@ -101,16 +100,16 @@ public class ChallengeService {
 
 
     public List<Challenge> getChallengesDescription(String description){
-        Challenge challenge = new Challenge();
-        challenge.setDescription("Test Challenge");
-        challenge.setMonth("july");
-        challrepo.save(challenge);
-        List<Challenge> resultset = challrepo.findByDescriptionIgnoreCase("Test Challenge");
-        System.out.println(resultset.isEmpty() + " true if no results ");
-        System.out.println("Size " + resultset.size());
-        System.out.println("\nsearching db for " + description + "\n");
+//        Challenge challenge = new Challenge();
+//        challenge.setDescription("Test Challenge");
+//        challenge.setMonth("july");
+//        challrepo.save(challenge);
+//        List<Challenge> resultset = challrepo.findByDescriptionIgnoreCase("Test Challenge");
+//        System.out.println(resultset.isEmpty() + " true if no results ");
+//        System.out.println("Size " + resultset.size());
+//        System.out.println("\nsearching db for " + description + "\n");
 
-        return challrepo.findByDescriptionIgnoreCase(description.trim());
+        return challangerepo.findByDescriptionIgnoreCase(description.trim());
 //        List<Challenge> tempchas = new ArrayList<>();
 //        for(Challenge cha : challenges){
 //            if(cha.getDescription().toLowerCase().equals(desc.toLowerCase()) || cha.getDescription().toLowerCase().contains(desc.toLowerCase())){
@@ -121,13 +120,13 @@ public class ChallengeService {
     }
 
     public boolean updateChallenge(Long id, Challenge updatechallenge) {
-        Optional<Challenge> challenge = challrepo.findById(id);
+        Optional<Challenge> challenge = challangerepo.findById(id);
 
         if(challenge.isPresent()){
             Challenge challengetoupdate = challenge.get();
             challengetoupdate.setMonth(updatechallenge.getMonth());
             challengetoupdate.setDescription(updatechallenge.getDescription());
-            challrepo.save(challengetoupdate);
+            challangerepo.save(challengetoupdate);
             return true;
         }
 
@@ -158,9 +157,9 @@ public class ChallengeService {
 
         //return false;
 
-        Optional<Challenge> challenge = challrepo.findById(id);
+        Optional<Challenge> challenge = challangerepo.findById(id);
         if(challenge.isPresent()){
-            challrepo.deleteById(id);
+            challangerepo.deleteById(id);
             return true;
         }
 
