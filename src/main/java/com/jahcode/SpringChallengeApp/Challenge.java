@@ -1,8 +1,17 @@
 package com.jahcode.SpringChallengeApp;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+// Entity part of the JPA, instances of this class mapped to the table in the DB.
+@Entity
 public class Challenge {
 
+    @Id
     private Long id;
+    @Column (name = "challengemonth")
     private String month;
     private String description;
 
