@@ -3,6 +3,7 @@ package com.jahcode.SpringChallengeApp;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 // using JPA
@@ -11,4 +12,6 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 
     // our custom defined method for the DB
     Optional<Challenge> findByMonthIgnoreCase(String month);
+
+    List<Challenge> findByMonth(String month);
 }
