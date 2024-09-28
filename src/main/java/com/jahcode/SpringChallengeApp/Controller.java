@@ -89,6 +89,7 @@ public class Controller {
     // description and String variable name has to be same
     @GetMapping("/getdescription/{description}")
     public ResponseEntity<List<Challenge>> getDescription(@PathVariable String description){
+        System.out.println("\ngot description: " + description);
         List<Challenge> thelist = challengeService.getChallengesDescription(description);
         if(thelist.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

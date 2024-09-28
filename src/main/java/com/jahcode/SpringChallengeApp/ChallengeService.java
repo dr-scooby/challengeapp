@@ -100,14 +100,24 @@ public class ChallengeService {
     }
 
 
-    public List<Challenge> getChallengesDescription(String desc){
-        List<Challenge> tempchas = new ArrayList<>();
-        for(Challenge cha : challenges){
-            if(cha.getDescription().toLowerCase().equals(desc.toLowerCase()) || cha.getDescription().toLowerCase().contains(desc.toLowerCase())){
-                tempchas.add(cha);
-            }
-        }
-        return tempchas;
+    public List<Challenge> getChallengesDescription(String description){
+        Challenge challenge = new Challenge();
+        challenge.setDescription("Test Challenge");
+        challenge.setMonth("july");
+        challrepo.save(challenge);
+        List<Challenge> resultset = challrepo.findByDescriptionIgnoreCase("Test Challenge");
+        System.out.println(resultset.isEmpty() + " true if no results ");
+        System.out.println("Size " + resultset.size());
+        System.out.println("\nsearching db for " + description + "\n");
+
+        return challrepo.findByDescriptionIgnoreCase(description.trim());
+//        List<Challenge> tempchas = new ArrayList<>();
+//        for(Challenge cha : challenges){
+//            if(cha.getDescription().toLowerCase().equals(desc.toLowerCase()) || cha.getDescription().toLowerCase().contains(desc.toLowerCase())){
+//                tempchas.add(cha);
+//            }
+//        }
+//        return tempchas;
     }
 
     public boolean updateChallenge(Long id, Challenge updatechallenge) {
