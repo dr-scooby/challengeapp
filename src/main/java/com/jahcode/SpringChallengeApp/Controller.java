@@ -45,9 +45,9 @@ public class Controller {
 
         boolean isAdded = challengeService.addChallenge(c);
         if(isAdded)
-            return new ResponseEntity<>("Challenge added successfully", HttpStatus.I_AM_A_TEAPOT); // i am a teapot, testing only, change
+            return new ResponseEntity<>("Challenge added successfully", HttpStatus.OK); // i am a teapot, testing only, change
         else
-            return new ResponseEntity<>("Not added", HttpStatus.I_AM_A_TEAPOT);
+            return new ResponseEntity<>("Not added", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     // ResponseEntity returns the HTTP response code
