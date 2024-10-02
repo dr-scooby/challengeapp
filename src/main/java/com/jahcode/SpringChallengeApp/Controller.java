@@ -8,8 +8,15 @@ import java.util.List;
 
 // Controller class in Spring
 // end point mapping: http://localhost:8080/ChallengeApp/
+/*
+@CrossOrigin allows for the front end to access the back end.
+full error from the REACT:
+Access to XMLHttpRequest at 'http://localhost:8080/ChallengeApp/challenges' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+ */
 @RestController
 @RequestMapping("/ChallengeApp")
+@CrossOrigin(origins = "http://localhost:3000")
 public class Controller {
 
 
